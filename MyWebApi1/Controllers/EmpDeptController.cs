@@ -10,6 +10,9 @@ namespace MyWebApi1.Controllers
     {
         public int DeptId { get; set; }
         public int EmpId { get; set; }
+        public string EmpName { get; set; }
+        public string DeptName { get; set; }
+
     }
 
     [Route("api/[controller]")]
@@ -29,7 +32,7 @@ namespace MyWebApi1.Controllers
 
             var result = (from emp in _context.Employees
                          join dept in _context.Departments on emp.DeptId equals dept.DeptId
-                         select new DeptEmpResult { EmpId = emp.EmpId, DeptId = dept.DeptId }).ToList();
+                         select new DeptEmpResult { EmpId = emp.EmpId, EmpName = emp.EmpName, DeptId = dept.DeptId, DeptName = dept.DeptName }).ToList();
             return result;
         }
 
